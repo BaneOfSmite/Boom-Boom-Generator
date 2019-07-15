@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4172484983483468}
   - component: {fileID: 33383703730629000}
   - component: {fileID: 23012977246712970}
+  - component: {fileID: 65112444920591722}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102881747975978}
   m_LocalRotation: {x: -0.5000001, y: 0.49999988, z: 0.4999999, w: 0.5000001}
-  m_LocalPosition: {x: 5.997422, y: 0, z: -15.239826}
+  m_LocalPosition: {x: 5.561581, y: 0.23437057, z: 40.35529}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,3 +85,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1102881747975978}
   m_Mesh: {fileID: 4300010, guid: 9a087da30a2fc754fab426931af6d7a3, type: 3}
+--- !u!65 &65112444920591722
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1102881747975978}
+  m_Material: {fileID: 13400000, guid: d6a7bc39de31a694e9ee98008cb8ad28, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.04, y: 0.04, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.05}

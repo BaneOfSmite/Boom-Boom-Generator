@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4675345923472924}
   - component: {fileID: 33142669963563698}
   - component: {fileID: 23742819163409434}
+  - component: {fileID: 65549684448724070}
   m_Layer: 0
   m_Name: Brick Wall
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362071061620194}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 5.2745104, y: 0, z: -7.0490403}
+  m_LocalPosition: {x: 3.985933, y: 0.23712939, z: 39.22744}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,3 +85,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362071061620194}
   m_Mesh: {fileID: 4300002, guid: 9a087da30a2fc754fab426931af6d7a3, type: 3}
+--- !u!65 &65549684448724070
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362071061620194}
+  m_Material: {fileID: 13400000, guid: d6a7bc39de31a694e9ee98008cb8ad28, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0.05}
