@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -17,16 +18,16 @@ public class GameManager : MonoBehaviour {
     public AudioClip GameLoseSound;
 
     [Header("Text boxes references")]
-    public Text ScoreTextbox;
+    public TextMeshProUGUI ScoreTextbox;
     public string ScoreTextPrefix;
 
-    public Text AmmoTextbox;
+    public TextMeshProUGUI AmmoTextbox;
     public string AmmoTextPrefix;
 
-    public Text HealthTextbox;
+    public TextMeshProUGUI HealthTextbox;
     public string HealthTextPrefix;
 
-    public Text TimeLeftTextbox;
+    public TextMeshProUGUI TimeLeftTextbox;
     public string TimeLeftTextPrefix;
 
     public GameObject GameOverUI;

@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4409611204870124}
   - component: {fileID: 33072334163615934}
   - component: {fileID: 23649484537364982}
-  - component: {fileID: 64000394144482760}
+  - component: {fileID: 65826264707235636}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -216,8 +216,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561223575319426}
   m_Mesh: {fileID: 4300000, guid: 38509b603a5da9b4a855777c6068f5cb, type: 3}
---- !u!64 &64000394144482760
-MeshCollider:
+--- !u!65 &65826264707235636
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -225,11 +225,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 38509b603a5da9b4a855777c6068f5cb, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.06}
+  m_Center: {x: 0, y: 0, z: 0.03}
 --- !u!102 &102521891191690858
 TextMesh:
   serializedVersion: 3
@@ -309,7 +307,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2
+  m_Radius: 3
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
