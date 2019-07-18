@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     public bool isGameOver;
     
     private int score;
+	public int GeneratorLeft;
     private AudioSource audioSource;
 
     // Use this for initialization
@@ -52,6 +53,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (GeneratorLeft <= 0) {
+			GameObject.FindGameObjectWithTag("Door").GetComponent<Animator>().SetBool("Open", true);
+		}
         if (isGameOver)
             return;
 

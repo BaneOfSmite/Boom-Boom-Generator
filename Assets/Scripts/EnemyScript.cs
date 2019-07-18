@@ -35,18 +35,11 @@ public class EnemyScript : MonoBehaviour {
 		}
 	}
 
-	/*private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.tag.Equals("Bullet")) {
-			BulletScript bulletScript = collision.gameObject.GetComponent<BulletScript>();
-			HealthPoint -= bulletScript.BulletDamage;
-
-			Destroy(bulletScript.gameObject);
-
-			if (HealthPoint <= 0) {
-				Dead();
-			}
+	private void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.tag.Equals("Player")) {
+			print(true);
 		}
-	}*/
+	}
 
 	private void Dead() {
 		GameManager.Instance.UpdateScore(ScoreReward, DeathAudioClip);
