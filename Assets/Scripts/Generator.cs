@@ -26,16 +26,16 @@ public class Generator : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
-			if (transform.GetChild(0).GetComponent<MeshRenderer>() != null) {
+			if (transform.GetChild(0).name == "TimeLeft") {
 				transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
 			}
-				inProgress = true;
+			inProgress = true;
 		}
 	}
 
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
-			if (transform.GetChild(0).GetComponent<MeshRenderer>() != null) {
+			if (transform.GetChild(0).name == "TimeLeft") {
 				transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 			}
 			inProgress = false;
