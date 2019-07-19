@@ -20,6 +20,7 @@ public class Generator : MonoBehaviour {
 		if (TimeLeft <= 0 && !isDone) {
 			isDone = !isDone;
 			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().GeneratorLeft -= 1;
+			transform.GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Play();
 			Destroy(transform.GetChild(0).gameObject);
 		}
 	}
