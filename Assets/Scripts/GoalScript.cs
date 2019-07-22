@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoalScript : MonoBehaviour {
-    private float AnimateSpeed = 100;
+	private float AnimateSpeed = 100;
 
-    // Use this for initialization
-    void Start () {
-		
+	// Use this for initialization
+	void Start() {
+
 	}
-	
 	// Update is called once per frame
-	void Update () {
-        transform.Rotate(Vector3.up, AnimateSpeed * Time.deltaTime);
-    }
+	void Update() {
+		transform.Rotate(Vector3.up, AnimateSpeed * Time.deltaTime);
+	}
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag.Equals("Player") && !GameManager.Instance.isGameOver) {
-            GameManager.Instance.SetGameOver(true);
-        }
-    }
+	private void OnTriggerEnter(Collider collision) {
+		if (collision.gameObject.tag.Equals("Player") && !GameManager.Instance.isGameOver) {
+			GameManager.Instance.SetGameOver(true);
+		}
+	}
 }

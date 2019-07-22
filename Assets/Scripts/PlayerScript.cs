@@ -57,7 +57,6 @@ public class PlayerScript : MonoBehaviour {
 			StartCoroutine(SpawnBullet());
 		}
 	}
-
 	private IEnumerator SpawnBullet() {
 		RaycastHit hit;
 
