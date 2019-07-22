@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generator : MonoBehaviour {
 
 	public float TimeLeft = 30;
 	private bool inProgress, isDone;
+	public RectTransform[] UIComponents;
 
 	void Update() {
 		if (transform.GetChild(0).GetComponent<TextMesh>() != null) {
@@ -15,6 +17,7 @@ public class Generator : MonoBehaviour {
 		}
 		if (TimeLeft > 0 && inProgress) {
 			TimeLeft -= Time.deltaTime;
+			UIComponents[1].localPosition  = new Vector3((-450f + (30f - TimeLeft) * 15f), 0,0);
 			transform.GetChild(0).GetComponent<TextMesh>().text = Mathf.FloorToInt(TimeLeft).ToString();
 		}
 		if (TimeLeft <= 0 && !isDone) {
@@ -29,6 +32,7 @@ public class Generator : MonoBehaviour {
 		if (other.gameObject.CompareTag("Player")) {
 			if (transform.GetChild(0).name == "TimeLeft") {
 				transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+				UIComponents[0].gameObject.SetActive(true);
 			}
 			inProgress = true;
 		}
@@ -36,6 +40,7 @@ public class Generator : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
+			UIComponents[0].gameObject.SetActive(false);
 			if (transform.GetChild(0).name == "TimeLeft") {
 				transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 			}
