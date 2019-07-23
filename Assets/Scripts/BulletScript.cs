@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
-{
+public class BulletScript : MonoBehaviour {
     [Tooltip("Speed of the bullet")]
     public float MovementSpeed;
 
@@ -18,8 +17,7 @@ public class BulletScript : MonoBehaviour
     private float timeToLive = 3;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
@@ -27,10 +25,8 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject, timeToLive);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag.Equals("Wall"))
-        {
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag.Equals("Wall")) {
             audioSource.PlayOneShot(ImpactAudioClip);
         }
 

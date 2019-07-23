@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	public static GameManager Instance;
@@ -102,9 +102,9 @@ public class GameManager : MonoBehaviour {
 
 		RoundTime -= Time.deltaTime;
 
-		int minutes = (int)RoundTime / 60;
-		int seconds = (int)RoundTime - 60 * minutes;
-		int milliseconds = (int)(100 * (RoundTime - minutes * 60 - seconds));
+		int minutes = (int) RoundTime / 60;
+		int seconds = (int) RoundTime - 60 * minutes;
+		int milliseconds = (int) (100 * (RoundTime - minutes * 60 - seconds));
 
 		TimeLeftTextbox.text = TimeLeftTextPrefix + '\n' + string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
 	}

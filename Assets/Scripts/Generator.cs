@@ -8,7 +8,6 @@ public class Generator : MonoBehaviour {
 	public float TimeLeft = 30;
 	private bool inProgress, isDone, isSkillCheck;
 	public RectTransform[] UIComponents, SkillCheck;
-
 	void Update() {
 		if (transform.GetChild(0).GetComponent<TextMesh>() != null) {
 			if (GameObject.FindGameObjectWithTag("Player") != null) {
@@ -17,23 +16,21 @@ public class Generator : MonoBehaviour {
 		}
 		if (TimeLeft > 0 && inProgress) {
 			TimeLeft -= Time.deltaTime;
-			UIComponents[1].localPosition  = new Vector3((-900f + (30f - TimeLeft) * 30f), 0,0);
+			UIComponents[1].localPosition = new Vector3((-900f + (30f - TimeLeft) * 30f), 0, 0);
 			transform.GetChild(0).GetComponent<TextMesh>().text = Mathf.FloorToInt(TimeLeft).ToString();
 			if (Random.Range(1, 500) == 1 && !isSkillCheck) {
 				isSkillCheck = true;
 				TriggerSkillCheck();
-			}
-			else if (isSkillCheck) {
-				SkillCheck[2].localPosition += new Vector3 (1, 0, 0) * 400 * Time.deltaTime;
+			} else if (isSkillCheck) {
+				SkillCheck[2].localPosition += new Vector3(1, 0, 0) * 400 * Time.deltaTime;
 				if (Input.GetKeyDown(KeyCode.E)) {
-					if (SkillCheck[2].localPosition.x < SkillCheck[1].localPosition.x -27) {
+					if (SkillCheck[2].localPosition.x < SkillCheck[1].localPosition.x - 27) {
 						SkillCheckResult(false);
-					}
-					else {
+					} else {
 						SkillCheckResult(true);
 					}
 				}
-				if (SkillCheck[2].localPosition.x > SkillCheck[1].localPosition.x +27) {
+				if (SkillCheck[2].localPosition.x > SkillCheck[1].localPosition.x + 27) {
 					SkillCheckResult(false);
 				}
 			}
@@ -48,16 +45,15 @@ public class Generator : MonoBehaviour {
 	}
 	private void TriggerSkillCheck() { //+- 27 in X = success
 		SkillCheck[0].gameObject.SetActive(true);
-		SkillCheck[1].localPosition = new Vector3 (Random.Range(-427f, 427f), 0, 0);
-		SkillCheck[2].localPosition = new Vector3 (-500, 0, 0);
+		SkillCheck[1].localPosition = new Vector3(Random.Range(-427f, 427f), 0, 0);
+		SkillCheck[2].localPosition = new Vector3(-500, 0, 0);
 	}
 	private void SkillCheckResult(bool _success) {
 		isSkillCheck = false;
 		SkillCheck[0].gameObject.SetActive(false);
 		if (_success) {
 			//PlaySuccessAudio
-		}
-		else {
+		} else {
 			//PlayFailAudio
 			TimeLeft += 3f;
 		}

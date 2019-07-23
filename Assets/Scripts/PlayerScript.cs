@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerScript : MonoBehaviour {
 	[Tooltip("Shooting rate of the player")]
@@ -28,9 +29,11 @@ public class PlayerScript : MonoBehaviour {
 	private AudioSource audioSource;
 	private GameObject camera = null;
 	public Recoil RecoilObject;
+	private FirstPersonController _recoil;
 
 	// Use this for initialization
 	void Start() {
+		_recoil = transform.GetComponentInParent<FirstPersonController>();
 		rb = GetComponent<Rigidbody>();
 		audioSource = GetComponent<AudioSource>();
 
@@ -49,6 +52,7 @@ public class PlayerScript : MonoBehaviour {
 			return;
 
 		Shoot();
+		Debug.DrawLine(camera.transform.position + camera.transform.forward, camera.transform.forward * 100, Color.green);
 	}
 
 	private void Shoot() {
@@ -65,7 +69,7 @@ public class PlayerScript : MonoBehaviour {
 				hit.collider.gameObject.GetComponent<EnemyScript>().OnHit(ShootingDamage);
 			}
 		}
-
+		_recoil.m_MouseLook.RecoilOn();
 		audioSource.PlayOneShot(ShootingAudioClip);
 
 		GameManager.Instance.UpdateAmmo(--AmmoCount);

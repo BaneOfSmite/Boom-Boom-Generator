@@ -10,39 +10,30 @@ public class EnemySpawnerTrigger : MonoBehaviour {
     private bool triggeredBefore;
 
     // Use this for initialization
-	void Start ()
-    {
-        
-	}
+    void Start() {
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            if (TriggerOnce)
-            {
-                if (!triggeredBefore)
-                {
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag.Equals("Player")) {
+            if (TriggerOnce) {
+                if (!triggeredBefore) {
                     enemySpawner.InitializedSpawner();
                     triggeredBefore = true;
                 }
-            }
-            else
-            {
+            } else {
                 enemySpawner.InitializedSpawner();
             }
         }
     }
 
-    public void SetEnemySpawner(EnemySpawner _enemySpawner)
-    {
+    public void SetEnemySpawner(EnemySpawner _enemySpawner) {
         enemySpawner = _enemySpawner;
 
         // Set spawner start time to 0, to start upon triggered //
-        enemySpawner.StartTime = 0;     
+        enemySpawner.StartTime = 0;
 
-        if (!TriggerOnce)
-        {
+        if (!TriggerOnce) {
             enemySpawner.DestoryAfterSpawning = false;
         }
     }
