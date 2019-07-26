@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour {
 	private bool canShoot;
 	private bool canDamage;
 	private AudioSource audioSource;
-	private GameObject camera = null;
+	private GameObject _camera;
 	public Recoil RecoilObject;
 	private FirstPersonController _recoil;
 
@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour {
 		canShoot = true;
 		canDamage = true;
 		audioSource.clip = ShootingAudioClip;
-		camera = GameObject.FindGameObjectWithTag("MainCamera");
+		_camera = Camera.main.gameObject;
 
 		GameManager.Instance.UpdateAmmo(AmmoCount);
 		GameManager.Instance.UpdateHealth(HealthPoint);
@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour {
 			return;
 
 		Shoot();
-		Debug.DrawLine(camera.transform.position + camera.transform.forward, camera.transform.forward * 100, Color.green);
+		Debug.DrawLine(_camera.transform.position + _camera.transform.forward, _camera.transform.forward * 100, Color.green);
 	}
 
 	private void Shoot() {
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour {
 	private IEnumerator SpawnBullet() {
 		RaycastHit hit;
 
-		if (Physics.Raycast(camera.transform.position + camera.transform.forward, camera.transform.forward, out hit, Mathf.Infinity)) {
+		if (Physics.Raycast(_camera.transform.position + _camera.transform.forward, _camera.transform.forward, out hit, Mathf.Infinity)) {
 			if (hit.collider.gameObject.tag.Equals("Enemy")) {
 				hit.collider.gameObject.GetComponent<EnemyScript>().OnHit(ShootingDamage);
 			}
