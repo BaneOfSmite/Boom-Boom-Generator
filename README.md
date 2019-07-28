@@ -1,4 +1,4 @@
-# PA06
+# Boom Boom Generator
 
 To Download the game, Click On Realeases, Assets then Boom Boom Generator.zip
 
