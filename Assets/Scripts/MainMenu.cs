@@ -30,18 +30,20 @@ public class MainMenu : MonoBehaviour {
 				SceneManager.LoadScene(1);
 				break;
 			case 2: //Options
-				UIGameObjects[0].SetActive(false);
-				UIGameObjects[1].GetComponent<Animator>().SetBool("Options", true);
+				UIGameObjects[0].GetComponent<Animator>().SetBool("Options", false);
+				StartCoroutine(DelayedFunction(1, 1f));
 				break;
 			case 3: //How To Play
-
+				UIGameObjects[0].GetComponent<Animator>().SetBool("Options", false);
+				StartCoroutine(DelayedFunction(3, 1f));
 				break;
 			case 4: //Return To Menu From Options
 				UIGameObjects[1].GetComponent<Animator>().SetBool("Options", false);
-				StartCoroutine(DelayedFunction(1, 1.5f));
+				StartCoroutine(DelayedFunction(2, 1f));
 				break;
 			case 5: //Return To Menu From How To Play
-
+				UIGameObjects[2].GetComponent<Animator>().SetBool("HowToPlay", false);
+				StartCoroutine(DelayedFunction(2, 1f));
 				break;
 
 		}
@@ -55,7 +57,13 @@ public class MainMenu : MonoBehaviour {
 		yield return new WaitForSeconds(delay);
 		switch (type) {
 			case 1:
-				UIGameObjects[0].SetActive(true);
+				UIGameObjects[1].GetComponent<Animator>().SetBool("Options", true);
+				break;
+			case 2:
+				UIGameObjects[0].GetComponent<Animator>().SetBool("Options", true);
+				break;
+			case 3:
+				UIGameObjects[2].GetComponent<Animator>().SetBool("HowToPlay", true);
 				break;
 		}
 	}

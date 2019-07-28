@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour {
 
 	[Header("Game audioClips")]
 	public AudioClip BackgroundMusic;
-	public AudioClip GameWinSound;
-	public AudioClip GameLoseSound;
+	//public AudioClip GameWinSound;
+	public AudioClip[] GameLoseSound;
 
 	[Header("Text boxes references")]
 	public TextMeshProUGUI ScoreTextbox;
@@ -70,11 +70,9 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void UpdateScore(int _score, AudioClip audioClip) {
+	public void UpdateScore(int _score) {
 		score += _score;
 		ScoreTextbox.text = ScoreTextPrefix + score;
-
-		audioSource.PlayOneShot(audioClip);
 	}
 
 	public void UpdateAmmo(int ammo) {
@@ -116,9 +114,9 @@ public class GameManager : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.None;
 		GameObject.Find("FPSPlayer").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
 		if (isWin) {
-			audioSource.PlayOneShot(GameWinSound);
+			//audioSource.PlayOneShot(GameWinSound);
 		} else {
-			audioSource.PlayOneShot(GameLoseSound);
+			audioSource.PlayOneShot(GameLoseSound[Random.Range(0, GameLoseSound.Length)]);
 		}
 	}
 

@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour {
 	[Tooltip("Shooting sound effect")]
 	public AudioClip ShootingAudioClip;
 
+	public AudioClip[] TakingDamage;
+
 	private Rigidbody rb = null;
 	private Vector3 moveDirection = Vector3.zero;
 	private bool canShoot;
@@ -30,6 +32,7 @@ public class PlayerScript : MonoBehaviour {
 	private GameObject _camera;
 	public Recoil RecoilObject;
 	private FirstPersonController _recoil;
+	public GameObject Flare;
 
 	// Use this for initialization
 	void Start() {
@@ -69,6 +72,7 @@ public class PlayerScript : MonoBehaviour {
 				hit.collider.gameObject.GetComponent<EnemyScript>().OnHit(ShootingDamage);
 			}
 		}
+		StartCoroutine(GunFlare());
 		_recoil.m_MouseLook.RecoilOn();
 		audioSource.PlayOneShot(ShootingAudioClip);
 
@@ -86,10 +90,17 @@ public class PlayerScript : MonoBehaviour {
 			StartCoroutine(GetDamage(collision));
 		}
 	}
-
+	private IEnumerator GunFlare() {
+		Flare.GetComponent<MeshRenderer>().enabled = true;
+		Flare.GetComponent<Light>().enabled = true;
+		yield return new WaitForSeconds(0.05f);
+		Flare.GetComponent<MeshRenderer>().enabled = false;
+		Flare.GetComponent<Light>().enabled = false;
+	}
 	private IEnumerator GetDamage(Collider collision) {
 		EnemyScript enemyScript = collision.gameObject.GetComponent<EnemyScript>();
 		HealthPoint -= enemyScript.ContactDamage;
+		audioSource.PlayOneShot(TakingDamage[Random.Range(0, TakingDamage.Length)]);
 		GameManager.Instance.UpdateHealth(HealthPoint);
 
 		if (HealthPoint <= 0) {

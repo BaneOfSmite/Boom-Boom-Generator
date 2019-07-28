@@ -17,10 +17,11 @@ public class EnemyScript : MonoBehaviour {
 	public int ScoreReward;
 
 	[Tooltip("Sound upon death")]
-	public AudioClip DeathAudioClip;
+	public AudioClip[] DamageClips;
 
 	private Transform playerTransform;
 	private NavMeshAgent navMeshAgent;
+	public GameObject GruntObject;
 
 	// Use this for initialization
 	void Start() {
@@ -42,13 +43,16 @@ public class EnemyScript : MonoBehaviour {
 	}
 
 	private void Dead() {
-		GameManager.Instance.UpdateScore(ScoreReward, DeathAudioClip);
+		GameManager.Instance.UpdateScore(ScoreReward);
+		GameObject g = Instantiate(GruntObject, transform.position, Quaternion.identity);
+		g.GetComponent<AudioSource>().PlayOneShot(DamageClips[Random.Range(0, DamageClips.Length)]);
+		Destroy(g, 1.5f);
 		Destroy(gameObject);
 	}
 
 	public void OnHit(int damage) {
 		HealthPoint -= damage;
-
+		GetComponent<AudioSource>().PlayOneShot(DamageClips[Random.Range(0, DamageClips.Length)]);
 		if (HealthPoint <= 0) {
 			Dead();
 		}
