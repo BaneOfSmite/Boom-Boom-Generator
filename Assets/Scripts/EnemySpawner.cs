@@ -23,11 +23,11 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		if (EnemySpawnerTrigger == null) {
+		/*if (EnemySpawnerTrigger == null) {
 			InitializedSpawner();
 		} else {
 			EnemySpawnerTrigger.GetComponent<EnemySpawnerTrigger>().SetEnemySpawner(this);
-		}
+		}*/
 	}
 	void Update() {
 		if (!StartedSpawning && (5 - GameManager.Instance.GeneratorLeft) >= GeneratorCompletedStarting) {
