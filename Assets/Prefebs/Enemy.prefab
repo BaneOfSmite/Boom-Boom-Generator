@@ -1443,7 +1443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementSpeed: 10
   ContactDamage: 10
-  HealthPoint: 500
+  HealthPoint: 300
   ScoreReward: 5
   DamageClips:
   - {fileID: 8300000, guid: b8d99e3e7479c5f4297b0e4334bb9e0f, type: 3}

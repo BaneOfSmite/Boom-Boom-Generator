@@ -21,10 +21,7 @@ public class Generator : MonoBehaviour {
 			if (transform.GetChild(0).GetComponent<TextMesh>() != null) {
 				transform.GetChild(0).GetComponent<TextMesh>().text = Mathf.FloorToInt(TimeLeft).ToString();
 			}
-			if (Random.Range(1, 500) == 1 && !isSkillCheck) {
-				isSkillCheck = true;
-				TriggerSkillCheck();
-			} else if (isSkillCheck) {
+			if (isSkillCheck) {
 				SkillCheck[2].localPosition += new Vector3(1, 0, 0) * 400 * Time.deltaTime;
 				if (Input.GetKeyDown(KeyCode.E)) {
 					if (SkillCheck[2].localPosition.x < SkillCheck[1].localPosition.x - 27) {
@@ -67,6 +64,7 @@ public class Generator : MonoBehaviour {
 			if (transform.GetChild(0).name == "TimeLeft") {
 				transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
 				UIComponents[0].gameObject.SetActive(true);
+				InvokeRepeating("CanTriggerSkillCheck", 0, 1);
 			}
 			inProgress = true;
 		}
@@ -74,6 +72,7 @@ public class Generator : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
+			CancelInvoke("CanTriggerSkillCheck");
 			if (isSkillCheck) {
 				SkillCheckResult(false);
 			}
@@ -84,4 +83,19 @@ public class Generator : MonoBehaviour {
 			inProgress = false;
 		}
 	}
+	private void CanTriggerSkillCheck() {
+		if (Random.Range(1, 10) == 1 && !isSkillCheck) {
+			isSkillCheck = true;
+			TriggerSkillCheck();
+		}
+	}
 }
+
+/*
+
+if (Random.Range(1, 500) == 1 && !isSkillCheck) {
+				isSkillCheck = true;
+				TriggerSkillCheck();
+			}
+
+ */

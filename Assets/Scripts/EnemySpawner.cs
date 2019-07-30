@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-	[Tooltip("Time the spawner start after starting the scene")]
-	public float StartTime;
+	[Tooltip("Start Spawner After this amount of gen")]
+	public int GeneratorCompletedStarting;
 
 	[Tooltip("Duration the spawner will spawn continuously")]
 	public float SpawnDuration;
@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	[Tooltip("Destory spawner after spawning")]
 	public bool DestoryAfterSpawning;
+	private bool StartedSpawning;
 
 	public EnemySpawnerTrigger EnemySpawnerTrigger;
 
@@ -28,7 +29,12 @@ public class EnemySpawner : MonoBehaviour {
 			EnemySpawnerTrigger.GetComponent<EnemySpawnerTrigger>().SetEnemySpawner(this);
 		}
 	}
-
+	void Update() {
+		if (!StartedSpawning && (5 - GameManager.Instance.GeneratorLeft) >= GeneratorCompletedStarting) {
+			StartedSpawning = true;
+			InitializedSpawner();
+		}
+	}
 	private void StartSpawner() {
 		if (GameManager.Instance.isGameOver) {
 			CancelInvoke("StartSpawner");
@@ -39,7 +45,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	private IEnumerator StopSpawning() {
-		yield return new WaitForSeconds(StartTime + SpawnDuration);
+		yield return new WaitForSeconds(GeneratorCompletedStarting + SpawnDuration);
 		CancelInvoke("StartSpawner");
 
 		if (DestoryAfterSpawning) {
@@ -48,7 +54,8 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	public void InitializedSpawner() {
-		InvokeRepeating("StartSpawner", StartTime, SpawnRate);
+
+		InvokeRepeating("StartSpawner", 0, SpawnRate);
 		StartCoroutine(StopSpawning());
 	}
 }

@@ -28,15 +28,15 @@ public class Chest : MonoBehaviour {
 
 		if (CanOpen && CanLoot && animationCoolDown <= 0 && Input.GetKeyDown(KeyCode.E)) {
 			CanLoot = false;
-			cooldown = 20;
+			cooldown = 15;
 			GetComponent<Animator>().SetBool("ChestOpen", false);
 			transform.GetChild(0).GetComponent<MeshFilter>().mesh = null;
 			switch (ItemID) {
 				case 0:
-					Player.GetComponent<PlayerScript>().AddHealth(10, PickupSounds[0]);
+					Player.GetComponent<PlayerScript>().AddHealth(Random.Range(10, 20), PickupSounds[0]);
 					break;
 				case 1:
-					Player.GetComponent<PlayerScript>().AddAmmo(10, PickupSounds[1]);
+					Player.GetComponent<PlayerScript>().AddAmmo(Random.Range(10, 20), PickupSounds[1]);
 					break;
 			}
 		}

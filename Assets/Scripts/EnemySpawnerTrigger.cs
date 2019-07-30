@@ -31,7 +31,7 @@ public class EnemySpawnerTrigger : MonoBehaviour {
         enemySpawner = _enemySpawner;
 
         // Set spawner start time to 0, to start upon triggered //
-        enemySpawner.StartTime = 0;
+        //enemySpawner.StartTime = 0;
 
         if (!TriggerOnce) {
             enemySpawner.DestoryAfterSpawning = false;
