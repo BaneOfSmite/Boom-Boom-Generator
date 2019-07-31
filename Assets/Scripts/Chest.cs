@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour {
 	private float cooldown, animationCoolDown;
 	private int ItemID;
 	private GameObject Player;
+	public GameObject E;
 
 	public GameObject[] ItemType;
 	public AudioClip[] PickupSounds;
@@ -21,6 +22,7 @@ public class Chest : MonoBehaviour {
 			CanLoot = true;
 			animationCoolDown = 1;
 			GetComponent<Animator>().SetBool("ChestOpen", true);
+			GetComponent<AudioSource>().Play();
 			ItemID = Random.Range(0, ItemType.Length);
 			transform.GetChild(0).GetComponent<MeshFilter>().mesh = ItemType[ItemID].GetComponent<MeshFilter>().sharedMesh;
 			transform.GetChild(0).GetComponent<MeshRenderer>().material = ItemType[ItemID].GetComponent<MeshRenderer>().sharedMaterial;
@@ -29,6 +31,7 @@ public class Chest : MonoBehaviour {
 		if (CanOpen && CanLoot && animationCoolDown <= 0 && Input.GetKeyDown(KeyCode.E)) {
 			CanLoot = false;
 			cooldown = 15;
+			GetComponent<AudioSource>().Play();
 			GetComponent<Animator>().SetBool("ChestOpen", false);
 			transform.GetChild(0).GetComponent<MeshFilter>().mesh = null;
 			switch (ItemID) {
@@ -47,12 +50,14 @@ public class Chest : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
+			E.SetActive(true);
 			CanOpen = true;
 		}
 	}
 
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag("Player")) {
+			E.SetActive(false);
 			CanOpen = false;
 		}
 	}

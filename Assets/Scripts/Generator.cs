@@ -8,7 +8,7 @@ public class Generator : MonoBehaviour {
 	public float TimeLeft = 30;
 	private bool inProgress, isDone, isSkillCheck;
 	public RectTransform[] UIComponents, SkillCheck;
-	public AudioClip SkillCheckSound, Explode;
+	public AudioClip SkillCheckSound, Explode, Ding;
 	void Update() {
 		if (transform.GetChild(0).GetComponent<TextMesh>() != null) {
 			if (GameObject.FindGameObjectWithTag("Player") != null) {
@@ -37,6 +37,7 @@ public class Generator : MonoBehaviour {
 		}
 		if (TimeLeft <= 0 && !isDone) {
 			isDone = !isDone;
+			StartCoroutine(CompletedDing());
 			GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().GeneratorLeft -= 1;
 			transform.GetChild(1).GetChild(0).GetComponent<ParticleSystem>().Play();
 			Destroy(transform.GetChild(0).gameObject);
@@ -83,6 +84,14 @@ public class Generator : MonoBehaviour {
 			inProgress = false;
 		}
 	}
+
+	IEnumerator CompletedDing() {
+		while (true) {
+			yield return new WaitForSeconds(0.5f);
+			GetComponent<AudioSource>().PlayOneShot(Ding);
+		}
+	}
+
 	private void CanTriggerSkillCheck() {
 		if (Random.Range(1, 10) == 1 && !isSkillCheck) {
 			isSkillCheck = true;

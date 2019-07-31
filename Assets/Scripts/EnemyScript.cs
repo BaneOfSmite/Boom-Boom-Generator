@@ -53,6 +53,7 @@ public class EnemyScript : MonoBehaviour {
 	public void OnHit(int damage) {
 		HealthPoint -= damage;
 		GetComponent<AudioSource>().PlayOneShot(DamageClips[Random.Range(0, DamageClips.Length)]);
+		GetComponent<ParticleSystem>().Play();
 		if (HealthPoint <= 0) {
 			Dead();
 		}

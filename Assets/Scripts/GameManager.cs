@@ -114,7 +114,11 @@ public class GameManager : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.None;
 		GameObject.Find("FPSPlayer").GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
 		if (isWin) {
-			//audioSource.PlayOneShot(GameWinSound);
+			StartCoroutine(WinRGB());
+			int minutes = (int) RoundTime / 60;
+			int seconds = (int) RoundTime - 60 * minutes;
+			int milliseconds = (int) (100 * (RoundTime - minutes * 60 - seconds));
+			GameOverUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "You Won In\n" + string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
 		} else {
 			audioSource.PlayOneShot(GameLoseSound[Random.Range(0, GameLoseSound.Length)]);
 		}
@@ -129,5 +133,45 @@ public class GameManager : MonoBehaviour {
 
 	public int GetScore() {
 		return score;
+	}
+	private IEnumerator WinRGB() {
+		Color RGB;
+		int mode = 1;
+		RGB = new Color(1, 0, 1, 0.686f);
+		while (true) {
+			if (mode == 1) {
+				RGB = RGB -= new Color(0.05f, 0, 0, 0);
+				if (RGB.r <= 0) {
+					mode = 2;
+				}
+			} else if (mode == 2) {
+				RGB = RGB += new Color(0, 0.05f, 0, 0);
+				if (RGB.g >= 1) {
+					mode = 3;
+				}
+			} else if (mode == 3) {
+				RGB = RGB -= new Color(0, 0, 0.05f, 0);
+				if (RGB.b <= 0) {
+					mode = -1;
+				}
+			} else if (mode == -1) {
+				RGB = RGB += new Color(0.05f, 0, 0, 0);
+				if (RGB.r >= 1) {
+					mode = -2;
+				}
+			} else if (mode == -2) {
+				RGB = RGB -= new Color(0, 0.05f, 0, 0);
+				if (RGB.g <= 0) {
+					mode = -3;
+				}
+			} else if (mode == -3) {
+				RGB = RGB += new Color(0, 0, 0.05f, 0);
+				if (RGB.b >= 1) {
+					mode = 1;
+				}
+			}
+			GameOverUI.transform.GetChild(0).GetComponent<Image>().color = RGB;
+			yield return new WaitForSeconds(0.01f);
+		}
 	}
 }

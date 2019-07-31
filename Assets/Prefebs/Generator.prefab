@@ -143,8 +143,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008781877276940}
-  m_LocalRotation: {x: -0, y: 0.999203, z: -0, w: 0.039916974}
-  m_LocalPosition: {x: -25.25, y: 0, z: -36.06}
+  m_LocalRotation: {x: -0, y: 0.40903497, z: -0, w: 0.9125188}
+  m_LocalPosition: {x: 22.99, y: 0, z: 5.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364640751570468}
@@ -281,9 +281,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -316,7 +316,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   - {fileID: 0}
   SkillCheckSound: {fileID: 8300000, guid: e5d17ba37cfffdc4085e69c7f9258e89, type: 3}
   Explode: {fileID: 8300000, guid: 6f0c2cdb2d5abf547ab325ace4c138f7, type: 3}
+  Ding: {fileID: 8300000, guid: 3905ef53bc7f1af4c91bc847b6ac9242, type: 3}
 --- !u!136 &136825026497540778
 CapsuleCollider:
   m_ObjectHideFlags: 1
