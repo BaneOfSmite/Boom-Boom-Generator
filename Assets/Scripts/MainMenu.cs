@@ -8,10 +8,15 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
 	public GameObject[] UIGameObjects;
-	public TMP_Dropdown _qualitysetting;
+	public TMP_Dropdown _qualitysetting, _difficulity;
 	private int _quality;
 
 	void Start() {
+		if (!PlayerPrefs.HasKey("Chevy")) {
+			PlayerPrefs.SetInt("Chevy", 0);
+		} else {
+			_difficulity.value = PlayerPrefs.GetInt("Chevy");
+		}
 		if (PlayerPrefs.HasKey("Quality")) {
 			_quality = PlayerPrefs.GetInt("Quality");
 			_qualitysetting.value = _quality;
@@ -51,6 +56,13 @@ public class MainMenu : MonoBehaviour {
 	public void QualityOption(int QualitySetting) {
 		QualitySettings.SetQualityLevel(QualitySetting);
 		PlayerPrefs.SetInt("Quality", QualitySetting);
+	}
+	public void ChevyFilter(int Difficulty) {
+		if (Difficulty == 0) {
+			PlayerPrefs.SetInt("Chevy", 0);
+		} else {
+			PlayerPrefs.SetInt("Chevy", 1);
+		}
 	}
 
 	private IEnumerator DelayedFunction(int type, float delay) {

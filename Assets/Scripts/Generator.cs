@@ -9,6 +9,14 @@ public class Generator : MonoBehaviour {
 	private bool inProgress, isDone, isSkillCheck;
 	public RectTransform[] UIComponents, SkillCheck;
 	public AudioClip SkillCheckSound, Explode, Ding;
+
+	private int SkillCheckAppearChance = 90;
+	void Start() {
+		if (PlayerPrefs.GetInt("Chevy") == 1) {
+			SkillCheckAppearChance = 0;
+		}
+	}
+
 	void Update() {
 		if (transform.GetChild(0).GetComponent<TextMesh>() != null) {
 			if (GameObject.FindGameObjectWithTag("Player") != null) {
@@ -93,7 +101,7 @@ public class Generator : MonoBehaviour {
 	}
 
 	private void CanTriggerSkillCheck() {
-		if (Random.Range(1, 10) == 1 && !isSkillCheck) {
+		if (Random.Range(1, 101) >= SkillCheckAppearChance && !isSkillCheck) {
 			isSkillCheck = true;
 			TriggerSkillCheck();
 		}

@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour {
 	public int GeneratorLeft;
 	private AudioSource audioSource;
 
+	public GameObject[] _gens;
+
 	// Use this for initialization
 	void Awake() {
 		if (Instance == null) {
@@ -52,6 +54,18 @@ public class GameManager : MonoBehaviour {
 		audioSource.Play();
 
 		GameOverUI.SetActive(false);
+	}
+	void Start() {
+		if (PlayerPrefs.GetInt("Chevy") == 1) {
+			GameObject gentoremove1, gentoremove2;
+			gentoremove1 = _gens[Random.Range(0, _gens.Length)];
+			gentoremove2 = _gens[Random.Range(0, _gens.Length)];
+			while (gentoremove1 == gentoremove2) {
+				gentoremove2 = _gens[Random.Range(0, _gens.Length)];
+			}
+			gentoremove1.GetComponent<Generator>().TimeLeft = 0;
+			gentoremove2.GetComponent<Generator>().TimeLeft = 0;
+		}
 	}
 
 	// Update is called once per frame

@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class GoalScript : MonoBehaviour {
 	private float AnimateSpeed = 100;
-
-	// Use this for initialization
-	void Start() {
-
-	}
 	// Update is called once per frame
 	void Update() {
-		transform.Rotate(Vector3.up, AnimateSpeed * Time.deltaTime);
+		//transform.Rotate(Vector3.up, AnimateSpeed * Time.deltaTime);
 	}
 
 	private void OnTriggerEnter(Collider collision) {

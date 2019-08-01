@@ -46,6 +46,14 @@ ModelImporter:
     100080: mixamorig:Spine
     100082: mixamorig:Spine1
     100084: mixamorig:Spine2
+    100086: Armature
+    100088: mixamorig:HeadTop_End_end
+    100090: mixamorig:LeftHandIndex4_end
+    100092: mixamorig:LeftHandThumb4_end
+    100094: mixamorig:LeftToe_End_end
+    100096: mixamorig:RightHandIndex4_end
+    100098: mixamorig:RightHandThumb4_end
+    100100: mixamorig:RightToe_End_end
     400000: //RootNode
     400002: Enemy
     400004: mixamorig:Head
@@ -89,9 +97,18 @@ ModelImporter:
     400080: mixamorig:Spine
     400082: mixamorig:Spine1
     400084: mixamorig:Spine2
+    400086: Armature
+    400088: mixamorig:HeadTop_End_end
+    400090: mixamorig:LeftHandIndex4_end
+    400092: mixamorig:LeftHandThumb4_end
+    400094: mixamorig:LeftToe_End_end
+    400096: mixamorig:RightHandIndex4_end
+    400098: mixamorig:RightHandThumb4_end
+    400100: mixamorig:RightToe_End_end
     2100000: Base Color
     4300000: Enemy
     7400000: mixamo.com
+    7400002: Armature|Armature|mixamo.com|Layer0
     9500000: //RootNode
     13700000: Enemy
     2186277476908879412: ImportLogs
